@@ -17,11 +17,4 @@ import java.util.Set;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ApiResult subscribe(@PathVariable("id") long id,
-                               ReviewForm form) {
-        ApiResult result = new ApiResult(0);
-        return result;
-    }
-
 }
