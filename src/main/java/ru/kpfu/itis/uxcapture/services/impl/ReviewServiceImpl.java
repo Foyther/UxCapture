@@ -19,6 +19,6 @@ public class ReviewServiceImpl implements ReviewService {
     public void save(Review review) throws NotFoundException{
         if(review != null){
             reviewRepository.save(review);
-        }
+        } else throw new NotFoundException("not found");
     }
 }

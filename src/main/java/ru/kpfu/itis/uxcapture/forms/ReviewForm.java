@@ -23,7 +23,7 @@ public class ReviewForm {
 
     private String review;
 
-    private List<CriterionForm> criterionForms;
+    private List<CriterionForm> criterions;
 
     public String getAppId() {
         return appId;
@@ -57,12 +57,12 @@ public class ReviewForm {
         this.review = review;
     }
 
-    public List<CriterionForm> getCriterionForms() {
-        return criterionForms;
+    public List<CriterionForm> getCriterions() {
+        return criterions;
     }
 
-    public void setCriterionForms(List<CriterionForm> criterionForms) {
-        this.criterionForms = criterionForms;
+    public void setCriterions(List<CriterionForm> criterions) {
+        this.criterions = criterions;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ReviewForm {
                 "id=" + id +
                 ", displayName='" + displayName + '\'' +
                 ", review='" + review + '\'' +
-                ", criterionForms=" + criterionForms +
+                ", criterionForms=" + criterions +
                 '}';
     }
 }

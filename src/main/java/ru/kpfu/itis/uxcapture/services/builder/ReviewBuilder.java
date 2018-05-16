@@ -40,8 +40,9 @@ public class ReviewBuilder {
         review.setDisplay(displayService.findByName(reviewForm.getDisplayName()));
         review.setDevice(deviceService.findById(reviewForm.getId()));
         review.setText(reviewForm.getReview());
-        LinkedList<CriterionReview> criterionReviewLinkedList = new LinkedList<>();
-        for(CriterionForm criterionForm: reviewForm.getCriterionForms()){
+        List<CriterionReview> criterionReviewLinkedList = new LinkedList<>();
+
+        for(CriterionForm criterionForm: reviewForm.getCriterions()){
             Criterion criterion = criterionService.findById(criterionForm.getId());
             CriterionReview criterionReview = new CriterionReview();
             criterionReview.setValue(criterionForm.getValue());
