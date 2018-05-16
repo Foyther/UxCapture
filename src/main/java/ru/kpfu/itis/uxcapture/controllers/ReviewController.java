@@ -11,7 +11,7 @@ import ru.kpfu.itis.uxcapture.services.api.response.ListCriterionShortResult;
 import ru.kpfu.itis.uxcapture.forms.ReviewForm;
 import ru.kpfu.itis.uxcapture.models.Application;
 import ru.kpfu.itis.uxcapture.models.Criterion;
-import ru.kpfu.itis.uxcapture.services.ReviewBuilder;
+import ru.kpfu.itis.uxcapture.services.builder.ReviewBuilder;
 import ru.kpfu.itis.uxcapture.services.api.response.ApiResult;
 import ru.kpfu.itis.uxcapture.services.converter.CriterionToCriterionShortForm;
 import ru.kpfu.itis.uxcapture.services.interf.ApplicationService;
@@ -52,7 +52,7 @@ public class ReviewController {
     @RequestMapping(value = "/criterions", method = RequestMethod.POST)
     public ListCriterionShortResult criterions(@RequestBody CategorieForm categorieForm) {
         ListCriterionShortResult apiResult = new ListCriterionShortResult();
-        Application application = new Application();
+        Application application;
         try {
 
             if(categorieForm.getId() != null){

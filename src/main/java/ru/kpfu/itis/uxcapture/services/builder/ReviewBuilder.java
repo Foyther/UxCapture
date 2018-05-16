@@ -1,4 +1,4 @@
-package ru.kpfu.itis.uxcapture.services;
+package ru.kpfu.itis.uxcapture.services.builder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
