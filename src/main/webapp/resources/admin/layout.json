@@ -1,0 +1,30 @@
+{
+  "title": "Панель администратора",
+  "rightButton": "logout",
+  "leftButton": "site",
+  "url": "/admin",
+  "hasContent": false,
+  "menu": [
+    {
+      "title": "Тестируемые приложения",
+      "rightButton": "add",
+      "leftButton": "back",
+      "url": "/admin/boards/apps",
+      "hasContent": false
+    },
+    {
+      "title": "Критерии оценки экранов",
+      "rightButton": "add",
+      "leftButton": "back",
+      "url": "/admin/boards/criterions",
+      "hasContent": false
+    },
+    {
+      "title": "Результаты тестирования",
+      "rightButton": "add",
+      "leftButton": "back",
+      "url": "/admin/boards/results",
+      "hasContent": false
+    }
+  ]
+}
