@@ -14,12 +14,12 @@ import java.util.List;
 @Service
 public class TouchMapServiceImpl implements TouchMapService {
     @Autowired
-    private TouchMapService touchMapService;
+    private TouchMapRepository touchMapRepository;
 
     @Override
     public void save(List<TouchMap> touchMapList) throws Exception {
         if(touchMapList != null && touchMapList.size() > 0){
-            touchMapList.addAll(touchMapList);
+            touchMapRepository.save(touchMapList);
         } else throw new Exception();
     }
 }

@@ -16,6 +16,7 @@ public class TouchMapListForm {
     @JsonProperty(value = "device_id")
     private Long deviceId;
 
+    @JsonProperty(value = "touch_map")
     private List<TouchMapForm> touchMap;
 
     public TouchMapListForm() {

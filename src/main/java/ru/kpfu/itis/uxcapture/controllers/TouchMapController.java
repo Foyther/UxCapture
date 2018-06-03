@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import ru.kpfu.itis.uxcapture.forms.DeviceInfoForm;
 import ru.kpfu.itis.uxcapture.forms.TouchMapForm;
 import ru.kpfu.itis.uxcapture.forms.TouchMapListForm;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by Nurislam on 16.05.2018.
  */
 
-@Controller
+@RestController
 @RequestMapping("/touch_map")
 public class TouchMapController {
     @Autowired
