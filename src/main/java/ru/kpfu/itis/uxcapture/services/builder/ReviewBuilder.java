@@ -35,7 +35,6 @@ public class ReviewBuilder {
 
     public Review reviewForm(ReviewForm reviewForm) throws Exception {
         Review review = new Review();
-
         review.setDate(new Date().getTime());
         Display display = displayService.findByName(reviewForm.getDisplayName());
         if(display != null){
@@ -56,6 +55,7 @@ public class ReviewBuilder {
             CriterionReview criterionReview = new CriterionReview();
             criterionReview.setValue(criterionForm.getValue());
             criterionReview.setCriterion(criterion);
+            criterionReview.setReview(review);
             criterionReviewLinkedList.add(criterionReview);
         }
         review.setCriterionReviews(criterionReviewLinkedList);
