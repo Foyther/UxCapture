@@ -16,7 +16,7 @@ public class DeviceServiceImpl implements DeviceService{
     @Autowired
     private DeviceRepository deviceRepository;
 
-    public void save(Device device){
+    public Long save(Device device){
         if(device != null){
             if(deviceRepository.findByUuid(device.getUuid()) == null){
                 deviceRepository.save(device);
@@ -26,9 +26,11 @@ public class DeviceServiceImpl implements DeviceService{
                 refreshDevice.setScreenWidth(device.getScreenWidth());
                 refreshDevice.setScreenHeight(device.getScreenHeight());
                 refreshDevice.setOS(device.getOS());
+                device = refreshDevice;
                 deviceRepository.save(refreshDevice);
             }
         }
+        return device.getId();
     }
 
     @Override

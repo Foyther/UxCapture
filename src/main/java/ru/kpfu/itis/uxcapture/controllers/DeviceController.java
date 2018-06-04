@@ -32,8 +32,7 @@ public class DeviceController {
         try {
             if(deviceInfoForm.getUuid() != null){
                 Device device = deviceBuilder.getDevice(deviceInfoForm);
-                deviceService.save(device);
-                apiResult.setDeviceId(device.getId());
+                apiResult.setDeviceId(deviceService.save(device));
             } else throw new Exception();
         } catch (Exception e) {
             apiResult.setCode(1);
