@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class TimeForm {
 
     @JsonProperty(value = "app_id")
-    private String appId;
+    private Long appId;
 
     @JsonProperty(value = "display_name")
     private String displayName;
@@ -22,11 +22,11 @@ public class TimeForm {
     public TimeForm() {
     }
 
-    public String getAppId() {
+    public Long getAppId() {
         return appId;
     }
 
-    public void setAppId(String appId) {
+    public void setAppId(Long appId) {
         this.appId = appId;
     }
 

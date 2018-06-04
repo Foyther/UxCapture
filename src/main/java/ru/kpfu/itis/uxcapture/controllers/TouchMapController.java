@@ -14,6 +14,7 @@ import ru.kpfu.itis.uxcapture.models.TouchMap;
 import ru.kpfu.itis.uxcapture.services.api.response.ApiResult;
 import ru.kpfu.itis.uxcapture.services.api.response.DeviceSendResult;
 import ru.kpfu.itis.uxcapture.services.builder.TouchMapBuilder;
+import ru.kpfu.itis.uxcapture.services.interf.ApplicationService;
 import ru.kpfu.itis.uxcapture.services.interf.TouchMapService;
 
 import java.util.LinkedList;
@@ -32,11 +33,16 @@ public class TouchMapController {
     @Autowired
     private TouchMapBuilder touchMapBuilder;
 
+    @Autowired
+    private ApplicationService applicationService;
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ApiResult device(@RequestBody TouchMapListForm touchMapListForm) {
         ApiResult result = new ApiResult();
         try {
-            if(touchMapListForm != null && touchMapListForm.getAppId() != 0){
+            if(touchMapListForm != null
+                    && touchMapListForm.getAppId() != 0 &&
+                    applicationService.getById(touchMapListForm.getAppId()) != null){
                 touchMapService.save(getTouchMapList(touchMapListForm.getTouchMap(),
                         touchMapListForm.getDeviceId()));
             } else throw new Exception();

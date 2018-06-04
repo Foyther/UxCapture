@@ -29,7 +29,6 @@ public class DeviceController {
     @Autowired
     private ApplicationService applicationService;
 
-    //TODO app id isn't check
     @RequestMapping(value = "", method = RequestMethod.POST)
     public DeviceSendResult device(@RequestBody DeviceInfoForm deviceInfoForm) {
         DeviceSendResult apiResult = new DeviceSendResult(0);

@@ -1,5 +1,6 @@
 package ru.kpfu.itis.uxcapture.controllers;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,19 +44,25 @@ public class ReviewController {
     public ApiResult review(@RequestBody ReviewForm reviewForm) {
         ApiResult apiResult = new ApiResult(0);
         try {
-            reviewService.save(builder.reviewForm(reviewForm));
+            if (reviewForm.getAppId() != null &&
+                    applicationService.getById(reviewForm.getAppId()) != null) {
+                reviewService.save(builder.reviewForm(reviewForm));
+            } else throw new Exception();
+
+        } catch (NotFoundException e) {
+            apiResult.setCode(1);
+            e.printStackTrace();
         } catch (Exception e) {
             apiResult.setCode(1);
+            e.printStackTrace();
         }
         return apiResult;
     }
-
-    @RequestMapping(value = "/criterions", method = RequestMethod.POST)
+        @RequestMapping(value = "/criterions", method = RequestMethod.POST)
     public ListCriterionShortResult criterions(@RequestBody CategorieForm categorieForm) {
         ListCriterionShortResult apiResult = new ListCriterionShortResult();
         Application application;
         try {
-
             if(categorieForm.getId() != null){
                 application = applicationService.getById(categorieForm.getId());
                 apiResult.setCriterions(getCriterions(application.getCriterions()));

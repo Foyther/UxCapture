@@ -10,6 +10,7 @@ import ru.kpfu.itis.uxcapture.forms.TimeForm;
 import ru.kpfu.itis.uxcapture.models.TimeUse;
 import ru.kpfu.itis.uxcapture.services.api.response.ApiResult;
 import ru.kpfu.itis.uxcapture.services.builder.TimeBuilder;
+import ru.kpfu.itis.uxcapture.services.interf.ApplicationService;
 import ru.kpfu.itis.uxcapture.services.interf.TimeUseService;
 
 import java.util.logging.Level;
@@ -27,11 +28,17 @@ public class TimeController {
     @Autowired
     private TimeBuilder timeBuilder;
 
+    @Autowired
+    private ApplicationService applicationService;
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ApiResult review(@RequestBody TimeForm timeForm) {
         ApiResult apiResult = new ApiResult(0);
         try {
-            timeUseService.save(timeBuilder.getTimeUse(timeForm));
+            if (timeForm.getAppId() != null &&
+                    applicationService.getById(timeForm.getAppId()) != null) {
+                timeUseService.save(timeBuilder.getTimeUse(timeForm));
+            }
         } catch (Exception e) {
             apiResult.setCode(1);
             Logger.getLogger(TimeController.class.getName()).log(Level.SEVERE, null, e);
