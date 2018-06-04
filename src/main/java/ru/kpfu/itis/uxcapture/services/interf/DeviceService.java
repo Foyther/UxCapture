@@ -8,4 +8,5 @@ import ru.kpfu.itis.uxcapture.models.Device;
 public interface DeviceService {
     void save(Device device);
     Device findById(Long id);
+    Device findByUUID(String uuid);
 }

@@ -9,4 +9,5 @@ import ru.kpfu.itis.uxcapture.models.Device;
  */
 @Repository
 public interface DeviceRepository extends JpaRepository<Device, Long> {
+    Device findByUuid(String uuid);
 }

@@ -18,12 +18,26 @@ public class DeviceServiceImpl implements DeviceService{
 
     public void save(Device device){
         if(device != null){
-            deviceRepository.save(device);
+            if(deviceRepository.findByUuid(device.getUuid()) == null){
+                deviceRepository.save(device);
+            } else {
+                Device refreshDevice = deviceRepository.findByUuid(device.getUuid());
+                refreshDevice.setDpi(device.getDpi());
+                refreshDevice.setScreenWidth(device.getScreenWidth());
+                refreshDevice.setScreenHeight(device.getScreenHeight());
+                refreshDevice.setOS(device.getOS());
+                deviceRepository.save(refreshDevice);
+            }
         }
     }
 
     @Override
     public Device findById(Long id) {
         return deviceRepository.findOne(id);
+    }
+
+    @Override
+    public Device findByUUID(String uuid) {
+        return deviceRepository.findByUuid(uuid);
     }
 }
