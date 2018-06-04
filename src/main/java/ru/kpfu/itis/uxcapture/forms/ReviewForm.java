@@ -13,7 +13,7 @@ import java.util.List;
 public class ReviewForm {
 
     @JsonProperty(value = "app_id")
-    private String appId;
+    private Long appId;
 
     @JsonProperty(value = "device_id")
     private Long id;
@@ -25,11 +25,11 @@ public class ReviewForm {
 
     private List<CriterionForm> criterions;
 
-    public String getAppId() {
+    public Long getAppId() {
         return appId;
     }
 
-    public void setAppId(String appId) {
+    public void setAppId(Long appId) {
         this.appId = appId;
     }
 

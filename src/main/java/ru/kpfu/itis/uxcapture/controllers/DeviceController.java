@@ -10,6 +10,7 @@ import ru.kpfu.itis.uxcapture.forms.DeviceInfoForm;
 import ru.kpfu.itis.uxcapture.models.Device;
 import ru.kpfu.itis.uxcapture.services.builder.DeviceBuilder;
 import ru.kpfu.itis.uxcapture.services.api.response.DeviceSendResult;
+import ru.kpfu.itis.uxcapture.services.interf.ApplicationService;
 import ru.kpfu.itis.uxcapture.services.interf.DeviceService;
 
 /**
@@ -25,12 +26,17 @@ public class DeviceController {
     @Autowired
     private DeviceBuilder deviceBuilder;
 
+    @Autowired
+    private ApplicationService applicationService;
+
     //TODO app id isn't check
     @RequestMapping(value = "", method = RequestMethod.POST)
     public DeviceSendResult device(@RequestBody DeviceInfoForm deviceInfoForm) {
         DeviceSendResult apiResult = new DeviceSendResult(0);
         try {
-            if(deviceInfoForm.getUuid() != null){
+            if(deviceInfoForm.getUuid() != null &&
+                    deviceInfoForm.getAppId() != null &&
+                    applicationService.getById(deviceInfoForm.getAppId()) != null){
                 Device device = deviceBuilder.getDevice(deviceInfoForm);
                 apiResult.setDeviceId(deviceService.save(device));
             } else throw new Exception();

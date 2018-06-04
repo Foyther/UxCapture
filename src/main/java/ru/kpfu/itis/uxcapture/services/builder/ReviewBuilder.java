@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.uxcapture.forms.CriterionForm;
 import ru.kpfu.itis.uxcapture.forms.ReviewForm;
-import ru.kpfu.itis.uxcapture.models.Criterion;
-import ru.kpfu.itis.uxcapture.models.CriterionReview;
-import ru.kpfu.itis.uxcapture.models.Display;
-import ru.kpfu.itis.uxcapture.models.Review;
+import ru.kpfu.itis.uxcapture.models.*;
 import ru.kpfu.itis.uxcapture.repositories.DeviceRepository;
 import ru.kpfu.itis.uxcapture.repositories.DisplayRepository;
+import ru.kpfu.itis.uxcapture.services.interf.ApplicationService;
 import ru.kpfu.itis.uxcapture.services.interf.CriterionService;
 import ru.kpfu.itis.uxcapture.services.interf.DeviceService;
 import ru.kpfu.itis.uxcapture.services.interf.DisplayService;
@@ -23,21 +21,32 @@ import java.util.List;
  */
 @Service
 public class ReviewBuilder {
+    @Autowired
+    private ApplicationService applicationService;
 
     @Autowired
-    DisplayService displayService;
+    private DisplayService displayService;
 
     @Autowired
-    DeviceService deviceService;
+    private DeviceService deviceService;
 
     @Autowired
-    CriterionService criterionService;
+    private CriterionService criterionService;
 
-    public Review reviewForm(ReviewForm reviewForm) {
+    public Review reviewForm(ReviewForm reviewForm) throws Exception {
         Review review = new Review();
 
         review.setDate(new Date().getTime());
-        review.setDisplay(displayService.findByName(reviewForm.getDisplayName()));
+        Display display = displayService.findByName(reviewForm.getDisplayName());
+        if(display != null){
+            review.setDisplay(display);
+        } else {
+            display = new Display();
+            display.setApplication(applicationService.getById(reviewForm.getAppId()));
+            display.setName(reviewForm.getDisplayName());
+            displayService.save(display);
+        }
+        review.setDisplay(display);
         review.setDevice(deviceService.findById(reviewForm.getId()));
         review.setText(reviewForm.getReview());
         List<CriterionReview> criterionReviewLinkedList = new LinkedList<>();
