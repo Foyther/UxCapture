@@ -43,7 +43,7 @@ public class TouchMapController {
             if(touchMapListForm != null
                     && touchMapListForm.getAppId() != 0 &&
                     applicationService.getById(touchMapListForm.getAppId()) != null){
-                touchMapService.save(getTouchMapList(touchMapListForm.getTouchMap(),
+                touchMapService.save(getTouchMapList(touchMapListForm,
                         touchMapListForm.getDeviceId()));
             } else throw new Exception();
         } catch (Exception e) {
@@ -52,10 +52,11 @@ public class TouchMapController {
         return result;
     }
 
-    private List<TouchMap> getTouchMapList(List<TouchMapForm> touchMapForms, Long deviceId){
+    private List<TouchMap> getTouchMapList(TouchMapListForm touchMapListForm, Long deviceId) throws Exception {
+        List<TouchMapForm> touchMapForms = touchMapListForm.getTouchMap();
         List<TouchMap> touchMaps = new LinkedList<>();
         for(TouchMapForm form: touchMapForms){
-            touchMaps.add(touchMapBuilder.getTouchMap(form, deviceId));
+            touchMaps.add(touchMapBuilder.getTouchMap(form, deviceId, touchMapListForm.getAppId()));
         }
         return touchMaps;
     }
