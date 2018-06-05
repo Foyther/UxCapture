@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="uxcapture@localhost" uuid="b984f4ae-f10d-4645-a5bb-8c154ebaa12a">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/uxcapture</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="heroku" uuid="c31a1cae-1f3b-41e7-8eb1-1f241bc97b2f">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>

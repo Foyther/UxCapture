@@ -27,28 +27,4 @@ public class DefaultController {
         }
     }
 
-    @RequestMapping(value = "/contacts", method = RequestMethod.GET)
-    public String contacts(HttpServletRequest request, ModelMap modelMap) {
-
-        modelMap.put("content", "contacts");
-
-        if(Utils.isAjax(request)) {
-            return "site/contacts";
-        } else {
-            return "site/index";
-        }
-    }
-
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile(HttpServletRequest request, ModelMap modelMap) {
-
-        modelMap.put("content", "profile");
-
-        if(Utils.isAjax(request)) {
-            return "site/profile";
-        } else {
-            return "site/index";
-        }
-    }
-
 }

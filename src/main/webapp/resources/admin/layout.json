@@ -10,7 +10,16 @@
       "rightButton": "add",
       "leftButton": "back",
       "url": "/admin/boards/apps",
-      "hasContent": false
+      "hasContent": true,
+      "menu" : [
+        {
+          "title": "Добавить приложение",
+          "rightButton": "logout",
+          "leftButton": "back",
+          "url": "/admin/boards/apps/add",
+          "hasContent": true
+        }
+      ]
     },
     {
       "title": "Критерии оценки экранов",
