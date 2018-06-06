@@ -386,8 +386,7 @@ if (typeof jQuery === 'undefined') {
             }
 
             var jqXHR = $.ajax({
-                url: settings.url,
-                data: serialize,
+                url: settings.url + '?' + serialize,
                 method: method,
                 dataType: 'json'});
 

@@ -25,13 +25,11 @@ public class ApplicationController {
     public ApiResult application(@RequestParam String name) {
         ApiResult apiResult = new ApiResult(0);
         try {
-            if (name != null) {
-                Application application = new Application();
-                application.setName(name);
-                application = applicationRepository.save(application);
+            Application application = new Application();
+            application.setName(name);
+            application = applicationRepository.save(application);
 
-                apiResult.setBody(application);
-            } else throw new Exception();
+            apiResult.setBody(application);
         } catch (Exception e) {
             apiResult.setCode(1);
         }
@@ -39,12 +37,26 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public ApiResult applicationDelete(HttpServletRequest request) {
+    public ApiResult applicationDelete(@RequestParam Long id) {
         ApiResult apiResult = new ApiResult(0);
         try {
-            long id = new Long(request.getParameter("id"));
             Application application = applicationRepository.findOne(id);
             applicationRepository.delete(application);
+
+            apiResult.setBody("success");
+        } catch (Exception e) {
+            apiResult.setCode(1);
+        }
+        return apiResult;
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.PATCH)
+    public ApiResult editApplication(@RequestParam Long id, @RequestParam String name) {
+        ApiResult apiResult = new ApiResult(0);
+        try {
+            Application application = applicationRepository.findOne(id);
+            application.setName(name);
+            applicationRepository.save(application);
 
             apiResult.setBody("success");
         } catch (Exception e) {

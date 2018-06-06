@@ -148,3 +148,8 @@ h1 {
     right: 220px;
     position: absolute;
 }
+
+.text{
+    margin-bottom: 7px;
+    color: #FFFFFF;
+}

@@ -6,7 +6,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.uxcapture.models.Application;
+import ru.kpfu.itis.uxcapture.models.Criterion;
 import ru.kpfu.itis.uxcapture.repositories.ApplicationRepository;
+import ru.kpfu.itis.uxcapture.repositories.CriterionRepository;
 import ru.kpfu.itis.uxcapture.utils.Utils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,9 @@ public class AdminController {
 
     @Autowired
     private ApplicationRepository applicationRepository;
+
+    @Autowired
+    private CriterionRepository criterionRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
@@ -46,6 +51,34 @@ public class AdminController {
 
         if(Utils.isAjax(request)) {
             return "admin/boards/apps/add";
+        } else {
+            return "admin/index";
+        }
+    }
+
+    @RequestMapping(value = "/boards/criterions", method = RequestMethod.GET)
+    public String showCriterions(HttpServletRequest request, ModelMap modelMap) {
+
+        if(Utils.isAjax(request)) {
+
+            List<Criterion> criterions = criterionRepository.findAll();
+            modelMap.put("criterions", criterions);
+
+            return "admin/boards/criterions/index";
+        } else {
+            return "admin/index";
+        }
+    }
+
+    @RequestMapping(value = "/boards/criterions/add", method = RequestMethod.GET)
+    public String showAddCriterion(HttpServletRequest request, ModelMap modelMap) {
+
+        if(Utils.isAjax(request)) {
+
+            List<Application> apps = applicationRepository.findAll();
+            modelMap.put("apps", apps);
+
+            return "admin/boards/criterions/add";
         } else {
             return "admin/index";
         }

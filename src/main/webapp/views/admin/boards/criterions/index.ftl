@@ -1,8 +1,8 @@
-<#if 0 < apps?size>
-<div>Приложения:</div>
+<#if 0 < criterions?size>
+<div>Критерии оценки:</div>
 
 <div id="table-container">
-    <table id="apps">
+    <table id="criterions">
         <thead>
         <tr>
             <th onclick="sortTable($('#schedule').find('tbody'), 0, 'tabledit-span', 'number')">#</th>
@@ -11,10 +11,10 @@
         </thead>
 
         <tbody>
-            <#list apps as application>
+            <#list criterions as criterion>
             <tr>
-                <td>${application.getId() ! ""}</td>
-                <td>${application.getName() ! ""}</td>
+                <td>${criterion.getId() ! ""}</td>
+                <td>${criterion.getName() ! ""}</td>
             </tr>
             </#list>
         </tbody>
@@ -25,17 +25,17 @@
 
 <script type="text/javascript">
 
-    $('#apps').Tabledit({
-        url: '/apps',
+    $('#criterions').Tabledit({
+        url: '/criterions',
         inputClass: 'input_green',
-        editButton: true,
-        deleteButton: true,
+        editButton: false,
+        deleteButton: false,
         buttons: {
             edit: {
                 class: 'button button-edit-table',
                 html: '<span class="glyphicon glyphicon-pencil"></span>',
                 action: 'edit',
-                method: 'PATCH'
+                method: 'POST'
             },
             delete: {
                 class: 'button button-edit-table',
@@ -66,6 +66,6 @@
 </script>
 <#else>
 
-<div class="text center">Нет приложений</div>
+<div class="text center">Нет критериев</div>
 
 </#if>
