@@ -39,10 +39,33 @@
     },
     {
       "title": "Результаты тестирования",
-      "rightButton": "add",
+      "rightButton": "logout",
       "leftButton": "back",
       "url": "/admin/boards/results",
-      "hasContent": false
+      "hasContent": false,
+      "menu" : [
+        {
+          "title": "Время прибывания",
+          "rightButton": "logout",
+          "leftButton": "back",
+          "url": "/admin/boards/results/timeuses",
+          "hasContent": true
+        },
+        {
+          "title": "Отзывы",
+          "rightButton": "logout",
+          "leftButton": "back",
+          "url": "/admin/boards/results/reviews",
+          "hasContent": true
+        },
+        {
+          "title": "Средниие оценки",
+          "rightButton": "logout",
+          "leftButton": "back",
+          "url": "/admin/boards/results/average",
+          "hasContent": true
+        }
+      ]
     }
   ]
 }

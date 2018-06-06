@@ -37,7 +37,7 @@ public class CriterionController {
 
             Iterator<Integer> iterator = createCriterionForm.getApps().iterator();
             List<Application> apps = new ArrayList<>();
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 Application application = applicationRepository.findOne(Long.valueOf(iterator.next()));
                 apps.add(application);
             }
@@ -55,27 +55,27 @@ public class CriterionController {
     @RequestMapping(value = "", method = RequestMethod.PATCH)
     public ApiResult editCriterion(@RequestBody CreateCriterionForm createCriterionForm) {
         ApiResult apiResult = new ApiResult(0);
-        try {
-            Criterion criterion = criterionRepository.getOne(createCriterionForm.getId());
 
-            criterion.setName(createCriterionForm.getName());
-            criterion.setMinValue(createCriterionForm.getMinvalue());
-            criterion.setMaxValue(createCriterionForm.getMaxvalue());
+        Criterion criterion = criterionRepository.getOne(createCriterionForm.getId());
 
+        criterion.setName(createCriterionForm.getName());
+        criterion.setMinValue(createCriterionForm.getMinvalue());
+        criterion.setMaxValue(createCriterionForm.getMaxvalue());
+
+        if (createCriterionForm.getApps() != null) {
             Iterator<Integer> iterator = createCriterionForm.getApps().iterator();
             List<Application> apps = new ArrayList<>();
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 Application application = applicationRepository.findOne(Long.valueOf(iterator.next()));
                 apps.add(application);
             }
             criterion.setApplications(apps);
-
-            criterion = criterionRepository.save(criterion);
-
-            apiResult.setBody(criterion);
-        } catch (Exception e) {
-            apiResult.setCode(1);
         }
+
+        criterion = criterionRepository.save(criterion);
+
+        apiResult.setBody(criterion);
+
         return apiResult;
     }
 

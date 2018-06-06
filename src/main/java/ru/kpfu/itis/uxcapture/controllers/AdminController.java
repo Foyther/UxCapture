@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.uxcapture.models.Application;
 import ru.kpfu.itis.uxcapture.models.Criterion;
+import ru.kpfu.itis.uxcapture.models.TimeUse;
 import ru.kpfu.itis.uxcapture.repositories.ApplicationRepository;
 import ru.kpfu.itis.uxcapture.repositories.CriterionRepository;
+import ru.kpfu.itis.uxcapture.repositories.TimeUseRepository;
 import ru.kpfu.itis.uxcapture.utils.Utils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,9 @@ public class AdminController {
 
     @Autowired
     private CriterionRepository criterionRepository;
+
+    @Autowired
+    private TimeUseRepository timeUseRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
@@ -79,6 +84,25 @@ public class AdminController {
             modelMap.put("apps", apps);
 
             return "admin/boards/criterions/add";
+        } else {
+            return "admin/index";
+        }
+    }
+
+    @RequestMapping(value = "/boards/results", method = RequestMethod.GET)
+    public String showResults() {
+        return "admin/index";
+    }
+
+    @RequestMapping(value = "/boards/results/timeuses", method = RequestMethod.GET)
+    public String showTimeUses(HttpServletRequest request, ModelMap modelMap) {
+
+        if(Utils.isAjax(request)) {
+
+            List<TimeUse> timeUses = timeUseRepository.findAll();
+            modelMap.put("timeUses", timeUses);
+
+            return "admin/boards/results/timeuses/index";
         } else {
             return "admin/index";
         }

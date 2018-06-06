@@ -11,19 +11,11 @@
         <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="uxcapture@localhost" uuid="9fa10721-01fb-4e6f-a942-756b60d0a36c">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="local" uuid="4eb265a5-c42c-4c88-99b8-9f80f1d46d8b">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/uxcapture</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="tinyInt1isBit" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="yearIsDateType" value="false" />
-      </driver-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/uxcapture</jdbc-url>
     </data-source>
   </component>
 </project>

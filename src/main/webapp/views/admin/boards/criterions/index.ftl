@@ -7,6 +7,9 @@
         <tr>
             <th onclick="sortTable($('#schedule').find('tbody'), 0, 'tabledit-span', 'number')">#</th>
             <th onclick="sortTable($('#schedule').find('tbody'), 1, 'tabledit-span', 'string')">Название</th>
+            <th onclick="sortTable($('#schedule').find('tbody'), 2, 'tabledit-span', 'number')">Минимальное значение</th>
+            <th onclick="sortTable($('#schedule').find('tbody'), 3, 'tabledit-span', 'number')">Максимальное значение</th>
+            <th onclick="sortTable($('#schedule').find('tbody'), 4, 'tabledit-span', 'string')">Приоложения</th>
         </tr>
         </thead>
 
@@ -15,6 +18,13 @@
             <tr>
                 <td>${criterion.getId() ! ""}</td>
                 <td>${criterion.getName() ! ""}</td>
+                <td>${criterion.getMinValue() ! ""}</td>
+                <td>${criterion.getMaxValue() ! ""}</td>
+                <td>
+                    <#list criterion.getApplications() as app>
+                    ${app.getName()}
+                    </#list>
+                </td>
             </tr>
             </#list>
         </tbody>
@@ -28,8 +38,8 @@
     $('#criterions').Tabledit({
         url: '/criterions',
         inputClass: 'input_green',
-        editButton: false,
-        deleteButton: false,
+        editButton: true,
+        deleteButton: true,
         buttons: {
             edit: {
                 class: 'button button-edit-table',
@@ -59,7 +69,7 @@
         },
         columns: {
             identifier: [0, 'id'],
-            editable: [[1, 'name']]
+            editable: [[1, 'name'], [2, 'minvalue'], [3, 'maxvalue']]
         }
     });
 
