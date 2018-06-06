@@ -42,7 +42,7 @@
         });
 
         request.fail(function (data) {
-            showDialog('Ошибка с сервера', data.responseJSON.code);
+            showDialog('Ошибка с сервера', 'Статус: ' + data.status);
         });
     }
 </script>

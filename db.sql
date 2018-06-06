@@ -1,1 +1,1 @@
-INSERT INTO users (login, password, role) VALUES ('admin@admin.com', '12345678', 'ADMIN');
+INSERT INTO users (login, password, role) VALUES ('admin', '123123', 'ROLE_ADMIN');

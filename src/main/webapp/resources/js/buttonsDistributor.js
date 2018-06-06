@@ -102,7 +102,7 @@ function loadContent(url) {
         });
 
         request.fail(function (data) {
-            showDialog('Ошибка с сервера', data.responseJSON.errors);
+            showDialog('Ошибка с сервера', 'Статус: ' + data.status);
         });
     }
 }

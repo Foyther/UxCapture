@@ -51,6 +51,8 @@
                 if (addToHistory) {
                     window.history.pushState({"html": data, "pageTitle": title}, title, url);
                 }
+            }).fail(function (data) {
+                showDialog('Ошибка с сервера', 'Статус: ' + data.status);
             });
         }
     }

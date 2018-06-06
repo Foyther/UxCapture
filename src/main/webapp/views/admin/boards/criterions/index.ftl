@@ -35,7 +35,7 @@
                 class: 'button button-edit-table',
                 html: '<span class="glyphicon glyphicon-pencil"></span>',
                 action: 'edit',
-                method: 'POST'
+                method: 'PATCH'
             },
             delete: {
                 class: 'button button-edit-table',

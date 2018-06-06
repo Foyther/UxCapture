@@ -26,7 +26,16 @@
       "rightButton": "add",
       "leftButton": "back",
       "url": "/admin/boards/criterions",
-      "hasContent": true
+      "hasContent": true,
+      "menu" : [
+        {
+          "title": "Добавить критерий",
+          "rightButton": "logout",
+          "leftButton": "back",
+          "url": "/admin/boards/criterions/add",
+          "hasContent": true
+        }
+      ]
     },
     {
       "title": "Результаты тестирования",
