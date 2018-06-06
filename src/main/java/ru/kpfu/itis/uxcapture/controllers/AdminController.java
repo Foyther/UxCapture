@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.uxcapture.models.Application;
 import ru.kpfu.itis.uxcapture.models.Criterion;
+import ru.kpfu.itis.uxcapture.models.Review;
 import ru.kpfu.itis.uxcapture.models.TimeUse;
 import ru.kpfu.itis.uxcapture.repositories.ApplicationRepository;
 import ru.kpfu.itis.uxcapture.repositories.CriterionRepository;
+import ru.kpfu.itis.uxcapture.repositories.ReviewRepository;
 import ru.kpfu.itis.uxcapture.repositories.TimeUseRepository;
 import ru.kpfu.itis.uxcapture.utils.Utils;
 
@@ -31,6 +33,9 @@ public class AdminController {
 
     @Autowired
     private TimeUseRepository timeUseRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
@@ -103,6 +108,20 @@ public class AdminController {
             modelMap.put("timeUses", timeUses);
 
             return "admin/boards/results/timeuses/index";
+        } else {
+            return "admin/index";
+        }
+    }
+
+    @RequestMapping(value = "/boards/results/reviews", method = RequestMethod.GET)
+    public String showReviews(HttpServletRequest request, ModelMap modelMap) {
+
+        if(Utils.isAjax(request)) {
+
+            List<Review> reviews = reviewRepository.findAll();
+            modelMap.put("reviews", reviews);
+
+            return "admin/boards/results/reviews/index";
         } else {
             return "admin/index";
         }

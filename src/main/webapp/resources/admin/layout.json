@@ -57,13 +57,6 @@
           "leftButton": "back",
           "url": "/admin/boards/results/reviews",
           "hasContent": true
-        },
-        {
-          "title": "Средниие оценки",
-          "rightButton": "logout",
-          "leftButton": "back",
-          "url": "/admin/boards/results/average",
-          "hasContent": true
         }
       ]
     }
