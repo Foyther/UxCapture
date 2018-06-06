@@ -20,6 +20,7 @@
 <script src="/js/jquery.tabledit.js"></script>
 <script src="/js/jquery.tablefilter.js"></script>
 <script src="/js/jquery.tablesort.js"></script>
+<script src="/js/jquery-extension.js"></script>
 
 <script type="text/javascript">
 

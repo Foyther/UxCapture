@@ -31,11 +31,11 @@
             url: '/criterions',
             contentType: 'application/json; charset=utf8',
             type: 'POST',
-            data: form.serializeArray()
+            data: JSON.stringify(form.serializeObject())
         });
 
         request.done(function (data) {
-            if (data.status == 'ok') {
+            if (data.code == 0) {
                 back();
             }
         });

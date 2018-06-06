@@ -6,10 +6,11 @@ import java.util.List;
  * Created by apple on 06.06.2018.
  */
 public class CreateCriterionForm {
+    private Long id;
     private int minvalue;
     private int maxvalue;
     private String name;
-
+    private List<Integer> apps;
 
     public int getMinvalue() {
         return minvalue;
@@ -35,5 +36,19 @@ public class CreateCriterionForm {
         this.name = name;
     }
 
+    public List<Integer> getApps() {
+        return apps;
+    }
 
+    public void setApps(List<Integer> apps) {
+        this.apps = apps;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

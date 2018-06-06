@@ -38,6 +38,8 @@
         request.done(function (data) {
             if (data.code == 0) {
                 back();
+            } else {
+                showDialog('Ошибка с сервера', 'Не удалось создать критерий');
             }
         });
 

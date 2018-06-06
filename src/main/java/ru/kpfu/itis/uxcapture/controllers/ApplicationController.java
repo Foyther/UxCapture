@@ -2,6 +2,7 @@ package ru.kpfu.itis.uxcapture.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.kpfu.itis.uxcapture.forms.ApplicationForm;
 import ru.kpfu.itis.uxcapture.forms.DeviceInfoForm;
 import ru.kpfu.itis.uxcapture.models.Application;
 import ru.kpfu.itis.uxcapture.models.Device;
@@ -37,10 +38,10 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public ApiResult applicationDelete(@RequestParam Long id) {
+    public ApiResult applicationDelete(@RequestBody ApplicationForm applicationForm) {
         ApiResult apiResult = new ApiResult(0);
         try {
-            Application application = applicationRepository.findOne(id);
+            Application application = applicationRepository.findOne(applicationForm.getId());
             applicationRepository.delete(application);
 
             apiResult.setBody("success");
@@ -51,11 +52,11 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.PATCH)
-    public ApiResult editApplication(@RequestParam Long id, @RequestParam String name) {
+    public ApiResult editApplication(@RequestBody ApplicationForm applicationForm) {
         ApiResult apiResult = new ApiResult(0);
         try {
-            Application application = applicationRepository.findOne(id);
-            application.setName(name);
+            Application application = applicationRepository.findOne(applicationForm.getId());
+            application.setName(applicationForm.getName());
             applicationRepository.save(application);
 
             apiResult.setBody("success");

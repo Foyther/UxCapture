@@ -377,7 +377,8 @@ if (typeof jQuery === 'undefined') {
                 method = 'POST'
             }
 
-            var serialize = $table.find('.tabledit-input').serialize();
+            var serialize = $table.find('.tabledit-input').serializeObject();
+            console.log(serialize);
 
             var result = settings.onAjax(action, serialize);
 
@@ -386,7 +387,9 @@ if (typeof jQuery === 'undefined') {
             }
 
             var jqXHR = $.ajax({
-                url: settings.url + '?' + serialize,
+                url: settings.url,
+                data: JSON.stringify(serialize),
+                contentType: 'application/json; charset=utf8',
                 method: method,
                 dataType: 'json'});
 

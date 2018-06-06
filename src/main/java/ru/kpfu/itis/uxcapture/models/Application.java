@@ -12,13 +12,13 @@ public class Application extends AbstractEntity {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinTable(name = "apps_criterions",
             joinColumns = @JoinColumn(name = "app_id"),
             inverseJoinColumns = @JoinColumn(name = "criterion_id"))
     private List<Criterion> criterions;
 
-    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "application", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Display> displays;
 
     public Application(){
